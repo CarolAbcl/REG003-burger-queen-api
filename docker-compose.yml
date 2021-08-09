@@ -2,10 +2,14 @@ version: "3"
 services:
   db:
     image: mongo
+    restart: always
+    ports: 
+      - 28017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_ROOT_PASSWORD: bqapi
     networks:
+      - public
       - private
   node:
     image: node:12 # https://hub.docker.com/_/node/
@@ -14,7 +18,7 @@ services:
     environment:
       NODE_ENV: production
       PORT: 8080
-      DB_URL: mongodb://bq:secret@db:27017/bq?authSource=admin
+      DB_URL: mongodb://root:bqapi@db:27017/root?authSource=admin
       JWT_SECRET: xxxxxxxx
       ADMIN_EMAIL: admin@localhost
       ADMIN_PASSWORD: adminbq
