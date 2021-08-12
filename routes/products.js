@@ -48,6 +48,7 @@ module.exports = (app, nextMain) => {
    * @code {404} si el producto con `productId` indicado no existe
    */
   app.get('/products/:productId', requireAuth, (req, resp, next) => {
+    res.send(200, {products:[]})
   });
 
   /**
@@ -73,6 +74,8 @@ module.exports = (app, nextMain) => {
    * @code {404} si el producto con `productId` indicado no existe
    */
   app.post('/products', requireAdmin, (req, resp, next) => {
+    console.log(req.body);
+    res.status(200).send({message: 'el producto se ha recibido'})
   });
 
 

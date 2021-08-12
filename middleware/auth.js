@@ -13,11 +13,15 @@ module.exports = (secret) => (req, resp, next) => {
     return next();
   }
 
+  // const payload = jwt.decode(token, config.secret)
+  // req.user = payload.sub
+  // next()
+
   jwt.verify(token, secret, (err, decodedToken) => {
     if (err) {
       return next(403);
     }
-
+    
     // TODO: Verificar identidad del usuario usando `decodeToken.uid`
   });
 };

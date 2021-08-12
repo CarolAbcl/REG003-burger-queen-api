@@ -9,7 +9,7 @@ const pkg = require('./package.json');
 const { port, dbUrl, secret } = config;
 const app = express();
 
-// conexion a base de datos
+// db connection
 mongoose
   .connect(dbUrl, {
     useNewUrlParser: true,
